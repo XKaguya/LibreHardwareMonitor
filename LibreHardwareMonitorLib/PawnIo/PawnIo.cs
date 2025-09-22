@@ -41,16 +41,16 @@ public unsafe class PawnIo
         get { return !string.IsNullOrEmpty(InstallPath); }
     }
 
-    [DllImport("PawnIOLib", ExactSpelling = true, PreserveSig = false)]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, PreserveSig = false)]
     private static extern void pawnio_version(out uint version);
 
-    [DllImport("PawnIOLib", ExactSpelling = true, PreserveSig = false)]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, PreserveSig = false)]
     private static extern void pawnio_open(out IntPtr handle);
 
-    [DllImport("PawnIOLib", ExactSpelling = true, PreserveSig = false)]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, PreserveSig = false)]
     private static extern void pawnio_load(IntPtr handle, byte* blob, IntPtr size);
 
-    [DllImport("PawnIOLib", ExactSpelling = true, PreserveSig = false)]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, PreserveSig = false)]
     private static extern void pawnio_execute
     (
         IntPtr handle,
@@ -61,7 +61,7 @@ public unsafe class PawnIo
         IntPtr outSize,
         out IntPtr returnSize);
 
-    [DllImport("PawnIOLib", ExactSpelling = true, EntryPoint = "pawnio_execute")]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, EntryPoint = "pawnio_execute")]
     private static extern int pawnio_execute_hr
     (
         IntPtr handle,
@@ -72,7 +72,7 @@ public unsafe class PawnIo
         IntPtr outSize,
         out IntPtr returnSize);
 
-    [DllImport("PawnIOLib", ExactSpelling = true, PreserveSig = false)]
+    [DllImport("PawnIOLib.dll", ExactSpelling = true, PreserveSig = false)]
     private static extern void pawnio_close(IntPtr handle);
 
     private static void TryLoadLibrary()

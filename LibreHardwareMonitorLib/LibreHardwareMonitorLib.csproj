@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net472;netstandard2.0;net8.0;net9.0;net10.0</TargetFrameworks>
     <Platforms>x64;x86;ARM64</Platforms>
@@ -8,15 +8,11 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageId>$(AssemblyName)</PackageId>
+    <PackageId>LLT.LibreHardwareMonitorLib</PackageId>
     <Description>Monitor the temperature sensors, fan speeds, voltages, load and clock speeds of your computer.</Description>
     <PackageLicense>https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/blob/master/Licenses/LICENSE</PackageLicense>
     <PackageLicenseExpression>MPL-2.0</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/LibreHardwareMonitor/LibreHardwareMonitor</PackageProjectUrl>
     <PackageTags>libre open hardware monitor monitoring system logging cpu gpu</PackageTags>
-    <PackageVersion>$(Version)</PackageVersion>
-    <Pack>true</Pack>
-    <RepositoryUrl>https://github.com/LibreHardwareMonitor/LibreHardwareMonitor</RepositoryUrl>
     <LangVersion>latest</LangVersion>
     <PackageIcon>packageicon.png</PackageIcon>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>

@@ -1,13 +1,17 @@
 # LibreHardwareMonitor
-[![GitHub license](https://img.shields.io/github/license/LibreHardwareMonitor/LibreHardwareMonitor)](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/blob/master/LICENSE) [![Nuget](https://img.shields.io/nuget/v/LibreHardwareMonitorLib)](https://www.nuget.org/packages/LibreHardwareMonitorLib/) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/LibreHardwareMonitorLib?label=nuget-pre)](https://www.nuget.org/packages/LibreHardwareMonitorLib/) [![Nuget](https://img.shields.io/nuget/dt/LibreHardwareMonitorLib?label=nuget-downloads)](https://www.nuget.org/packages/LibreHardwareMonitorLib/)
+
+> [!NOTE]
+> This is a modified fork of the original [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor) library maintained for the [Lenovo Legion Toolkit](https://github.com/LenovoLegionToolkit-Team/LenovoLegionToolkit) project.
+
+[![GitHub license](https://img.shields.io/github/license/LenovoLegionToolkit-Team/LibreHardwareMonitor)](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/blob/master/LICENSE) [![Nuget](https://img.shields.io/nuget/v/LLT.LibreHardwareMonitorLib)](https://www.nuget.org/packages/LLT.LibreHardwareMonitorLib/) [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/LLT.LibreHardwareMonitorLib?label=nuget-pre)](https://www.nuget.org/packages/LLT.LibreHardwareMonitorLib/) [![Nuget](https://img.shields.io/nuget/dt/LLT.LibreHardwareMonitorLib?label=nuget-downloads)](https://www.nuget.org/packages/LLT.LibreHardwareMonitorLib/)
 
 Libre Hardware Monitor is free software that can monitor the temperature sensors, fan speeds, voltages, load and clock speeds of your computer. 
 
 ## What's included?
 | Name| .NET | Build Status |
 | --- | --- | --- | 
-| **LibreHardwareMonitor** <br /> Windows Forms based application that presents all data in a graphical interface | .NET Framework 4.7.2 <br/> .NET 10.0 | [![Build status](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/actions/workflows/master.yml/badge.svg)](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/actions) | 
-| **LibreHardwareMonitorLib** <br /> Library that allows you to use all features in your own application | .NET Framework 4.7.2 <br/> .NET Standard 2.0 <br/> .NET 8.0, .NET 9.0, and .NET 10.0 | [![Build status](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/actions/workflows/master.yml/badge.svg)](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/actions) | 
+| **LibreHardwareMonitor** <br /> Windows Forms based application that presents all data in a graphical interface | .NET Framework 4.7.2 <br/> .NET 10.0 | [![Build status](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/actions/workflows/master.yml/badge.svg)](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/actions) | 
+| **LibreHardwareMonitorLib** <br /> Library that allows you to use all features in your own application | .NET Framework 4.7.2 <br/> .NET Standard 2.0 <br/> .NET 8.0, .NET 9.0, and .NET 10.0 | [![Build status](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/actions/workflows/master.yml/badge.svg)](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/actions) | 
 
 ## What can it do?
 You can read information from devices such as:
@@ -18,10 +22,10 @@ You can read information from devices such as:
 - Network cards
 
 ## Where can I download it?
-You can download the latest release [here](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/releases).
+You can download the latest release [here](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/releases).
 
 ### Nightly builds
-If you have a **GitHub** account, you can download nightly builds [here](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/actions). Otherwise, you can download the *latest* nightly build [here](https://nightly.link/LibreHardwareMonitor/LibreHardwareMonitor/workflows/master/master/LibreHardwareMonitor.Windows.Forms.zip).
+If you have a **GitHub** account, you can download nightly builds [here](https://github.com/LenovoLegionToolkit-Team/LibreHardwareMonitor/actions). Otherwise, you can download the *latest* nightly build [here](https://nightly.link/LenovoLegionToolkit-Team/LibreHardwareMonitor/workflows/master/master/LibreHardwareMonitor.Windows.Forms.zip).
 
 ## How can I help improve it?
 The LibreHardwareMonitor team welcomes feedback and contributions!<br/>
@@ -29,7 +33,7 @@ You can check if it works properly on your motherboard. For many manufacturers, 
 
 ## Developer information
 **Integrate the library in own application**
-1. Add the [LibreHardwareMonitorLib](https://www.nuget.org/packages/LibreHardwareMonitorLib/) NuGet package to your application.
+1. Add the [LLT.LibreHardwareMonitorLib](https://www.nuget.org/packages/LLT.LibreHardwareMonitorLib/) NuGet package to your application.
 2. Use the sample code below.
 
 

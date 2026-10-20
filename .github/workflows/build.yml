@@ -1,0 +1,82 @@
+name: Build and Prerelease
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build & Prerelease
+    runs-on: windows-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Determine Version
+        id: get_version
+        run: |
+          $packageId = "LLT.LibreHardwareMonitorLib"
+          $csprojVersion = [version]"1.0.0"
+          if (Test-Path "Directory.Build.props") {
+            [xml]$xml = Get-Content "Directory.Build.props"
+            foreach ($pg in $xml.Project.PropertyGroup) {
+              if ($pg.PackageId) { $packageId = [string]$pg.PackageId }
+              if ($pg.VersionMajor -and $pg.VersionMinor) {
+                $csprojVersion = [version]"$($pg.VersionMajor).$($pg.VersionMinor).0"
+              }
+            }
+          }
+
+          $nugetHighest = $null
+          try {
+            $resp = Invoke-RestMethod -Uri "https://api.nuget.org/v3-flatcontainer/$($packageId.ToLower())/index.json" -TimeoutSec 5
+            foreach ($v in $resp.versions) {
+              if ($v -match '^(\d+\.\d+\.\d+)') {
+                $parsed = [version]$Matches[1]
+                if ($nugetHighest -eq $null -or $parsed -gt $nugetHighest) {
+                  $nugetHighest = $parsed
+                }
+              }
+            }
+          } catch {}
+
+          $highestKnown = $csprojVersion
+          if ($nugetHighest -and $nugetHighest -ge $highestKnown) {
+            $highestKnown = [version]::new($nugetHighest.Major, $nugetHighest.Minor, ($nugetHighest.Build + 1))
+          }
+
+          $finalVersion = "$($highestKnown.ToString(3))-pre.${{ github.run_number }}"
+          "version=$finalVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+          Write-Host "Resolved package version: $finalVersion"
+          $global:LASTEXITCODE = 0
+        shell: powershell
+
+      - name: Restore Dependencies
+        run: dotnet restore LibreHardwareMonitorLib\LibreHardwareMonitorLib.csproj -p:Platform=x64
+
+      - name: Build
+        run: dotnet build LibreHardwareMonitorLib\LibreHardwareMonitorLib.csproj -c Release /p:Version=${{ steps.get_version.outputs.version }} -p:Platform=x64
+
+      - name: Pack
+        run: dotnet pack LibreHardwareMonitorLib\LibreHardwareMonitorLib.csproj -c Release /p:Version=${{ steps.get_version.outputs.version }} -o Release -p:Platform=x64
+
+      - name: NuGet login
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: Metanome
+
+      - name: Push to NuGet.org
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: dotnet nuget push Release\*.nupkg --source https://api.nuget.org/v3/index.json --skip-duplicate --api-key ${{ steps.login.outputs.NUGET_API_KEY }}
